@@ -15,6 +15,7 @@ const STEPS = ["Proyecto", "Presupuesto", "Plazo", "Contacto"];
 
 export const QuotationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     register,
@@ -58,11 +59,34 @@ export const QuotationForm = () => {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
-  const onSubmit = (data: QuotationFormData) => {
-    toast.success("¡Solicitud enviada!", {
-      description: "Te contactaremos pronto con tu cotización",
-    });
-    console.log("Cotización validada:", data);
+  const onSubmit = async (data: QuotationFormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://desarrollos-intezia-n8n.uh1aur.easypanel.host/webhook/401addbf-3478-42e8-948f-6fddd7a23d3a", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al enviar la cotización");
+      }
+
+      toast.success("¡Solicitud enviada!", {
+        description: "Te contactaremos pronto con tu cotización",
+      });
+      console.log("Cotización enviada correctamente:", data);
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Error al enviar", {
+        description: "Por favor intenta nuevamente",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -293,9 +317,10 @@ export const QuotationForm = () => {
                 type="submit"
                 variant="gradient"
                 className="ml-auto px-8"
+                disabled={isSubmitting}
               >
                 <Send className="mr-2 h-4 w-4" />
-                Enviar Cotización
+                {isSubmitting ? "Enviando..." : "Enviar Cotización"}
               </Button>
             )}
           </div>
