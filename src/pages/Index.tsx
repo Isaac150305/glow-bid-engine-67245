@@ -1,24 +1,34 @@
 import { FuturisticBackground } from "@/components/FuturisticBackground";
 import { QuotationForm } from "@/components/QuotationForm";
-import inteziaLogo from "@/assets/intezia-logo.png";
+import techdayLogo from "@/assets/techday-logo.png";
 
 const Index = () => {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center py-12 relative">
       <FuturisticBackground />
       
-      <div className="container mx-auto flex flex-col items-center gap-16 relative z-10">
+      <div className="container mx-auto flex flex-col items-center gap-8 relative z-10">
         {/* Logo with elegant glow effect */}
         <div className="relative group">
           <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
           <img 
-            src={inteziaLogo} 
-            alt="INTEZIA Logo" 
-            className="h-28 w-auto md:h-36 lg:h-44 object-contain relative z-10 drop-shadow-2xl filter brightness-110"
+            src={techdayLogo} 
+            alt="IA TechDay Logo" 
+            className="h-20 w-auto md:h-24 lg:h-28 object-contain relative z-10 drop-shadow-2xl filter brightness-110"
           />
         </div>
 
-        {/* Quotation form */}
+        {/* Welcome message */}
+        <div className="text-center max-w-3xl px-4 space-y-3">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold gradient-text animate-float">
+            ¡Bienvenido a IA TechDay!
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground">
+            Has sido redirigido a esta <span className="text-primary font-semibold">encuesta especial</span> para conocer mejor tus necesidades y así poder <span className="text-secondary font-semibold">colaborar contigo</span> en el futuro
+          </p>
+        </div>
+
+        {/* Survey form */}
         <QuotationForm />
 
         {/* Decorative elements */}
