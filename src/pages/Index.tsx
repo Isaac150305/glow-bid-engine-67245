@@ -24,7 +24,7 @@ const Index = () => {
             ¡Bienvenido a IA TechDay!
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground">
-            Has sido redirigido a esta <span className="text-primary font-semibold">encuesta especial</span> para conocer mejor tus necesidades y así poder <span className="text-secondary font-semibold">colaborar contigo</span> en el futuro
+            Has sido redirigido a esta <span className="text-primary font-semibold">encuesta especial</span> donde un <span className="text-primary font-semibold">agente de IA</span> tomará tus datos para conocer mejor tus necesidades y así poder <span className="text-secondary font-semibold">colaborar contigo</span> en el futuro
           </p>
         </div>
 
